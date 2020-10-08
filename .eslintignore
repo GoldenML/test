@@ -1,0 +1,10 @@
+config/
+public/
+scripts/
+build/
+*.test.js
+src/runtime.js
+node_modules/
+.idea
+package-lock.json
+jsconfig.json

@@ -24,6 +24,18 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script>
+      window.getUrlParams=(name)=>{
+          var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+          var r = window.location.search.substr(1).match(reg);
+          if(r!==null){
+            return  decodeURI(r[2]);
+          }else{
+            return r;
+          }
+        }
+      window.token = ''
+    </script>
     <title>React App</title>
   </head>
   <body>

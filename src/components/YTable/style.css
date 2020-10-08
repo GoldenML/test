@@ -1,0 +1,9 @@
+.ytable {
+    width: 100%
+}
+.ytable .ant-table-content .ant-table-thead .ant-table-cell {
+    background-color: rgb(210, 239, 248);
+    height: 48px;
+    color: grey;
+     font-size: 15px;
+}
