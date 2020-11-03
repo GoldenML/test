@@ -8,6 +8,7 @@ import Home from './pages/home'
 import User from './pages/user'
 import { connect } from 'react-redux'
 import NotFound from './pages/error'
+import { lcStorage } from './util/storage'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -22,7 +23,7 @@ class App extends Component {
           <Switch>
             {
               AppRouter.map((item, index) => {
-                return <Route key={index} path={item.path} exact render={props => (<item.component {...props} />)} />
+                return <Route key={index} path={item.path} exact render={props => (!item.auth ? <item.component {...props} /> : (lcStorage.getItem('token') ? <item.component {...props} /> : <Redirect to='/home' />))} />
               })
             }
             <Redirect to='/404' />
@@ -32,4 +33,5 @@ class App extends Component {
     )
   }
 }
+
 export default App

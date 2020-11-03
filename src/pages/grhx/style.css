@@ -1,5 +1,19 @@
 .grhx {
-    background: #fff;
-    padding: 24px;
-    min-height: calc(100vh - 70px);
-  }
+  background: #F0F2F5;
+  padding: 24px;
+  min-height: calc(100vh - 50px);
+}
+.jbxx {
+  background: #FFF;
+  padding: 0px 24px 24px 24px;
+  min-height: 100px;
+}
+.coll {
+  background: #FFF;
+  padding: 0px 24px 24px 24px;
+  min-height: 200px;
+}
+.menuheander {
+  height: 90px !important;
+  line-height: 90px !important;
+}

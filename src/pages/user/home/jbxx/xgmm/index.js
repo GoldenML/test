@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Input, Row, Col, Button, message } from 'antd'
 import Store from './store'
 import Utils from '../../../../../util/Utils'
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 class index extends Component {
     formRef = React.createRef()
     constructor(props) {
@@ -19,6 +20,7 @@ class index extends Component {
           return
         }
         let params = {
+          username: this.props.username,
           oldPassword: values.oldPassword,
           newPassword: values.newPassword
         }
@@ -89,21 +91,21 @@ class index extends Component {
             <Row justify='center' >
               <Col span={10}>
                 <Form.Item required={false} {...layout} name='oldPassword' label='请输入原密码' rules={[{ required: true, message: '必输' }]}>
-                  <Input maxLength={30} type='password' style={{ width: '100%' }} />
+                  <Input className='basic' maxLength={30} type='password' style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
             </Row>
             <Row justify='center' >
               <Col span={10}>
                 <Form.Item required={false} {...layout} name='newPassword' label='请输入新密码' rules={[{ required: true, message: '必输' }, { validator: (rule, value, callback) => { this.pwValidate(rule, value, callback) } }]} validateFirst>
-                  <Input maxLength={30} type='password' style={{ width: '100%' }} />
+                  <Input className='basic' maxLength={30} type='password' style={{ width: '100%' }} iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
                 </Form.Item>
               </Col>
             </Row>
             <Row justify='center' >
               <Col span={10}>
                 <Form.Item required={false} {...layout} name='reNewPassword' label='请再次输入新密码' rules={[{ required: true, message: '必输' }, { validator: (rule, value, callback) => { this.repwValidate(rule, value, callback) } }]} validateFirst>
-                  <Input maxLength={30} type='password' style={{ width: '100%' }} />
+                  <Input className='basic' maxLength={30} type='password' style={{ width: '100%' }} iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
                 </Form.Item>
               </Col>
             </Row>

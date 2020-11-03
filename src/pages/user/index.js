@@ -25,18 +25,14 @@ class index extends Component {
     }
   }
   async componentWillMount() {
-    if (!sessionStorage.getItem('token')) {
-      this.props.history.push('/home')
-    } else {
-      await Store.getJbxx()
-      if (Store.success) {
-        this.setState({
-          jbxx: Store.jbxx
-        })
-      } else {
-        this.props.history.push('/home')
-      }
+    let page = window.getUrlParams('page')
+    if (page) {
+      this.jump(page)
     }
+    await Store.getJbxx({ username: this.props.location.state.username })
+    this.setState({
+      jbxx: Store.jbxx
+    })
   }
   exit = () => {
     Utils.exit()
@@ -107,10 +103,10 @@ class index extends Component {
           </Menu.Item>
         </Menu>
         {
-          this.state.home && <Home />
+          this.state.home && <Home username={this.props.location.state.username} />
         }
         {
-          this.state.main && <Main />
+          this.state.main && <Main username={this.props.location.state.username} />
         }
         {
           this.state.forum && <Forum />

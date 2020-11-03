@@ -34,6 +34,7 @@ class index extends Component {
   allfilecx = () => {
     let url = apiPath.GET_All_FILE_CX
     let params = {
+      username: this.props.username,
       fileType: this.state.lxSelected || undefined,
       startTime: this.state.startTime || undefined,
       endTime: this.state.endTime || undefined,
@@ -74,6 +75,10 @@ class index extends Component {
       if (record.cz === 'good') {
         record.goodNum -= 1
         record.cz = ''
+      } else if (record.cz === 'bad') {
+        record.cz = 'good'
+        record.goodNum += 1
+        record.badNum -= 1
       } else {
         record.cz = 'good'
         record.goodNum += 1
@@ -82,6 +87,10 @@ class index extends Component {
       if (record.cz === 'bad') {
         record.badNum -= 1
         record.cz = ''
+      } else if (record.cz === 'good') {
+        record.cz = 'bad'
+        record.badNum += 1
+        record.goodNum -= 1
       } else {
         record.cz = 'bad'
         record.badNum += 1
@@ -94,6 +103,7 @@ class index extends Component {
       dataSource: _this.state.dataSource
     })
     let params = {
+      username: this.props.username,
       fid: record.fid,
       cz,
     }
@@ -129,7 +139,12 @@ class index extends Component {
     await this.allfilecx()
   }
   download = (record) => {
-    window.location.href = encodeURI(record.filePath + '?download=0')
+    window.location.href = encodeURI(`http://8.129.76.21:8080${record.filePath}?download=0`)
+    // window.parent.postMessage({
+    //   'type': 'downLoadFile',
+    //   'fileName': downLoadFile.filename,
+    //   'fileUrl': `http://8.129.76.21:8080${record.filePath}?download=0`,
+    // }, '*')
   }
   render() {
     const columns = [
@@ -240,7 +255,7 @@ class index extends Component {
                 </Col>
                 <Col span={8}>
                   <Form.Item label='贡献者' name='contributor'>
-                    <Input placeholder='请输入' onBlur={this.conBlur} />
+                    <Input placeholder='请输入' className='basic' onBlur={this.conBlur} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -251,7 +266,7 @@ class index extends Component {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Epoch ©2020 Created by Yang Hui
+          曾经沧海难为水 除却巫山不是云
         </Footer>
       </Layout>
     )

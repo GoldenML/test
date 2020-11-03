@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Tag } from 'antd'
 import './style.css'
 const { CheckableTag } = Tag
 
-export class index extends Component {
+class CheckBoxTag extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -33,6 +34,7 @@ export class index extends Component {
     }
   }
   handleChange = async (checked, item) => {
+    const { onChange } = this.props
     if (checked) {
       await this.setSelectedTag(item.bm)
     } else {
@@ -46,7 +48,9 @@ export class index extends Component {
         })
       }
     }
-    this.props.onChange(this.state.selectedTag)
+    if (onChange) {
+      onChange(this.state.selectedTag)
+    }
   }
   render() {
     const { selectedTag } = this.state
@@ -69,5 +73,4 @@ export class index extends Component {
     )
   }
 }
-
-export default index
+export default CheckBoxTag

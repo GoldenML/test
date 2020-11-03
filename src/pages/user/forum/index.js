@@ -25,7 +25,7 @@ class index extends Component {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Epoch ©2020 Created by Yang Hui
+          曾经沧海难为水 除却巫山不是云
         </Footer>
       </Layout>
     )

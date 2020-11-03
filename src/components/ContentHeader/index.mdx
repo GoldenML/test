@@ -1,0 +1,31 @@
+---
+name: ContentHeader
+route: /ContentHeader
+sidebar: true
+---
+
+import { Playground, Props } from 'docz';
+import { ContentHeader } from "./../../index";
+
+# ContentHeader Component
+
+## 标题组件实例
+<Playground>
+<ContentHeader showLine={false} className={'123'}>测试标题</ContentHeader>
+<ContentHeader showLine={true} padding='5px'>abcd1234</ContentHeader>
+</Playground>
+
+# ContentHeader
+
+- 标题组件。
+
+## API
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| showLine | 下划线 | boolean | false |
+| color | 标题前图标颜色 | string | #398EEB |
+| padding | 内边距 | string | '20px 30px 10px 20px' |
+| stripVisible | 控制蓝条显隐 | boolean | true |
+| fontWeight | 标题字体 | string | '600' |
+

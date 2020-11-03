@@ -25,5 +25,24 @@ class Store {
         console.log('服务调用失败')
       }
     }
+    @action updateJbxx = async (params = {}) => {
+      try {
+        this.success = false
+        let res = await post(apiPath.UPDATE_USER_JBXX, params)
+        runInAction(() => {
+          if (res.success) {
+            this.success = true
+            message.destroy()
+            message.success(res.msg)
+          } else {
+            this.success = false
+            message.destroy()
+            message.error(res.msg)
+          }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
 }
 export default new Store()

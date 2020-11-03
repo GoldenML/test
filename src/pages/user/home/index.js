@@ -89,17 +89,17 @@ class index extends Component {
             <Content style={{ margin: '24px 16px 0' }}>
               <div className='home'>
                 {
-                  this.state.xgmm && <Xgmm />
+                  this.state.xgmm && <Xgmm username={this.props.username} />
                 }
                 {
-                  this.state.grxx && <Grxx />
+                  this.state.grxx && <Grxx username={this.props.username} />
                 }
                 {
-                  this.state.myShare && <MyShare />
+                  this.state.myShare && <MyShare username={this.props.username} />
                 }
               </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Epoch ©2020 Created by Yang Hui</Footer>
+            <Footer style={{ textAlign: 'center' }}>曾经沧海难为水 除却巫山不是云</Footer>
           </Layout>
         </Layout>
       </>

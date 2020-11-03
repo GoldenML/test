@@ -57,12 +57,13 @@ class index extends Component {
   filecx = () => {
     let url = apiPath.GET_FILE_CX
     let params = {
+      contributor: this.props.username,
       fileType: this.state.lxSelected || undefined,
     }
     this.tableRef.loadData(url, params)
   }
-  download = (filepath) => {
-    window.open(encodeURI(filepath))
+  download = (filePath) => {
+    window.location.href = encodeURI(`http://8.129.76.21:8080${filePath}?download=0`)
   }
   filedel = async (fid) => {
     this.setState({
@@ -97,7 +98,8 @@ class index extends Component {
   scCancel = () => {
     this.setState({
       sc: false,
-      fid: ''
+      fid: '',
+      sclxSelected: ''
     })
   }
   scwj = async () => {
@@ -127,7 +129,8 @@ class index extends Component {
       }
       this.setState({
         scwj: false,
-        uuid: ''
+        uuid: '',
+        sclxSelected: ''
       })
     })
   }
@@ -182,7 +185,7 @@ class index extends Component {
         render: (item, record) => {
           return (
             <>
-              <a onClick={() => { this.download(record.filepath) }}>下载</a>
+              <a onClick={() => { this.download(record.filePath) }}>下载</a>
               <Divider type='vertical' />
               <a onClick={() => { this.filedel(record.fid) }} style={{ color: '#D0021B' }}>删除</a>
             </>
@@ -225,6 +228,7 @@ class index extends Component {
           maskClosable={false}
           destroyOnClose
           centered
+          onCancel={() => { this.scwjCancel() }}
         >
           <Row>
             <Col span={24}>
@@ -233,12 +237,13 @@ class index extends Component {
               </Form.Item>
             </Col>
           </Row>
-          <Row>
-            <Col span={24} style={{ textAlign: 'left' }}>
-              <FileUpload data={{ uuid: this.state.uuid || '', fileType: this.state.sclxSelected || '' }} onChange={this.fileChange} />
-            </Col>
-          </Row>
-
+          {
+            this.state.sclxSelected && <Row>
+              <Col span={24} style={{ textAlign: 'left' }}>
+                <FileUpload data={{ uuid: this.state.uuid || '', fileType: this.state.sclxSelected || '' }} onChange={this.fileChange} />
+              </Col>
+            </Row>
+          }
           <div style={{ textAlign: 'center', marginTop: '40px' }}>
             <Button type='primary' style={{ minWidth: '80px', height: '31px', marginRight: '12px' }} onClick={this.scwj}>保存</Button>
             <Button type='danger' style={{ width: '80px', height: '31px', marginLeft: '12px' }} onClick={this.scwjCancel}>取消</Button>
@@ -253,6 +258,7 @@ class index extends Component {
           maskClosable={false}
           destroyOnClose
           centered
+          onCancel={() => { this.scCancel() }}
         >
           <div>
             <Row>

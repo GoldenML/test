@@ -2,6 +2,7 @@ import Home from '../pages/home'
 import User from '../pages/user'
 import Grhx from '../pages/grhx'
 import Error from '../pages/error'
+import Demo from '../pages/test/demo'
 export let AppRouter = [
   {
     path: '/',
@@ -19,6 +20,7 @@ export let AppRouter = [
     path: '/user',
     component: User,
     name: 'user',
+    auth: true,
     exact: true
   },
   {
@@ -31,6 +33,12 @@ export let AppRouter = [
     path: '/404',
     component: Error,
     name: 'error',
+    exact: true
+  },
+  {
+    path: '/demo',
+    component: Demo,
+    name: 'demo',
     exact: true
   },
 ]
