@@ -15,5 +15,9 @@ export default {
   GET_FILE_DEL: getApi('/file/filedel'),
   GET_FILE_CZ: getApi('/file/cz'),
   GET_GRHX_JBXX: getApi('/grhx/jbxx'),
-  UPDATE_USER_JBXX: getApi('/user/jbxx/update')
+  UPDATE_USER_JBXX: getApi('/user/jbxx/update'),
+
+  POST_POST_PUBLISH: getApi('/post/post/publish'),
+  POST_POST_FIND: getApi('/post/post/find'),
+  POST_POST_FIND_KEYWORDS: getApi('/post/post/find/keywords'),
 }

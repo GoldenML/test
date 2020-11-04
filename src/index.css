@@ -26,3 +26,9 @@ code {
   border-bottom: 1px solid #D9D9D9 !important;
   border-radius: 0px !important;
 }
+.ant-card-small > .ant-card-head {
+  background-color: #D9E1EA;
+}
+.ant-card-bordered {
+  border: 1px solid #D9E1EA !important
+}

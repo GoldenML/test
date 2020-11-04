@@ -5,6 +5,7 @@ const Utils = {
   exit: async () => {
     await post(apiPath.GET_USER_EXIT, {})
     lcStorage.removeItem('token')
+    // lcStorage.removeItem('username')
   }
 }
 

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import YTable from '../../../components/YTable'
+import YTable from 'Components/YTable'
 import { Layout, Form, Row, Col, Divider, DatePicker, Input } from 'antd'
 import './style.css'
-import CheckableTag from '../../../components/CheckBoxTag'
-import apiPath from '../../../common/apiPath'
+import CheckableTag from 'Components/CheckBoxTag'
+import apiPath from 'Common/apiPath'
 import { StarOutlined, FrownOutlined, SmileOutlined, StarTwoTone, SmileTwoTone, FrownTwoTone, LikeTwoTone, DislikeTwoTone } from '@ant-design/icons'
 import Store from './store'
 import moment from 'moment'
+import { lcStorage } from 'Util/storage'
 const { Header, Content, Footer, Sider } = Layout
 const { RangePicker } = DatePicker
 const dateFormat = 'YYYY-MM-DD'
@@ -34,7 +35,7 @@ class index extends Component {
   allfilecx = () => {
     let url = apiPath.GET_All_FILE_CX
     let params = {
-      username: this.props.username,
+      username: lcStorage.getItem('username'),
       fileType: this.state.lxSelected || undefined,
       startTime: this.state.startTime || undefined,
       endTime: this.state.endTime || undefined,
@@ -103,7 +104,7 @@ class index extends Component {
       dataSource: _this.state.dataSource
     })
     let params = {
-      username: this.props.username,
+      username: lcStorage.getItem('username'),
       fid: record.fid,
       cz,
     }
@@ -139,7 +140,8 @@ class index extends Component {
     await this.allfilecx()
   }
   download = (record) => {
-    window.location.href = encodeURI(`http://8.129.76.21:8080${record.filePath}?download=0`)
+    window.open(`http://8.129.76.21:8080${record.filePath}?download=0`)
+    // window.location.href = encodeURI(`http://8.129.76.21:8080${record.filePath}?download=0`)
     // window.parent.postMessage({
     //   'type': 'downLoadFile',
     //   'fileName': downLoadFile.filename,

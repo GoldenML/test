@@ -34,4 +34,11 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   )
+  app.use(
+    createProxyMiddleware('/post/', {
+      // target: 'http://8.129.76.21:8011',
+      target: 'http://127.0.0.1:8011',
+      changeOrigin: true,
+    })
+  )
 }

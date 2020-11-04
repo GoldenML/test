@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment'
 import { FormInstance } from 'antd/lib/form'
-import { lcStorage } from '../../util/storage'
+import { lcStorage } from 'Util/storage'
 @inject('globalStore')
 class index extends Component {
   formRef = React.createRef()
@@ -28,6 +28,7 @@ class index extends Component {
       await Store.login(params)
       if (Store.success) {
         console.log(lcStorage)
+        lcStorage.setItem('username', getFieldValue('username'))
         lcStorage.setItem('token', `20180304${moment().format('YYYYMMDDHHMMSS')}`, 60 * 1000 * 10)
         // sessionStorage.setItem('token', `20180304${moment().format('YYYYMMDDHHMMSS')}`)
         setTimeout(() => {

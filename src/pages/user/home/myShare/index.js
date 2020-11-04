@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Avatar, Tag, Form, Row, Col, Table, Upload, Button, Divider, Modal, Progress, message } from 'antd'
 import { UserOutlined, UploadOutlined } from '@ant-design/icons'
 import './style.css'
-import YTable from '../../../../components/YTable'
-import CheckBoxTag from '../../../../components/CheckBoxTag'
-import FileUpload from '../../../../components/FileUpload'
-import apiPath from '../../../../common/apiPath'
+import YTable from 'Components/YTable'
+import CheckBoxTag from 'Components/CheckBoxTag'
+import FileUpload from 'Components/FileUpload'
+import apiPath from 'Common/apiPath'
 import { withRouter } from 'react-router-dom'
-import Utils from '../../../../util/Utils'
+import Utils from 'Util/Utils'
+import { lcStorage } from 'Util/storage'
 import Store from './store'
 const { CheckableTag } = Tag
 class index extends Component {
@@ -57,7 +58,7 @@ class index extends Component {
   filecx = () => {
     let url = apiPath.GET_FILE_CX
     let params = {
-      contributor: this.props.username,
+      contributor: lcStorage.getItem('username'),
       fileType: this.state.lxSelected || undefined,
     }
     this.tableRef.loadData(url, params)

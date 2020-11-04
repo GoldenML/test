@@ -3,7 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './style.css'
 import YSelect from 'Components/YSelect'
 import YComment from 'Components/YComment'
-import { Col } from 'antd'
+import { Col, Card } from 'antd'
 import { CaretUpOutlined } from '@ant-design/icons'
 
 class demo extends Component {
@@ -37,6 +37,9 @@ class demo extends Component {
   add = (item) => {
 
   }
+  /**
+   * 评论
+   */
   reply = async (index) => {
     await this.resetEditor()
     let { data } = this.state
@@ -50,6 +53,9 @@ class demo extends Component {
       data
     })
   }
+  /**
+   * 评论回复
+   */
   commentReply = async (index, i) => {
     await this.resetEditor()
     let { data } = this.state
@@ -64,6 +70,9 @@ class demo extends Component {
       data
     })
   }
+  /**
+   * 重置编辑框
+   */
   resetEditor = async () => {
     let { data } = this.state
     for (let index = 0; index < data.length; index++) {
@@ -90,6 +99,9 @@ class demo extends Component {
       data
     })
   }
+  /**
+   * 评论提交
+   */
   onSubmit1 = (value, index) => {
     console.log(2)
     const { data } = this.state
@@ -114,6 +126,9 @@ class demo extends Component {
     })
     this.resetEditor()
   }
+  /**
+   * 评论回复提交
+   */
   onSubmit2 = (value, index, i) => {
     console.log(3)
     const { data } = this.state
@@ -149,6 +164,7 @@ class demo extends Component {
             valueKey='id'
           />
         </Col>
+        <Card title='卡片标题' hoverable loading>卡片内容</Card>
         {
           this.state.data.map((item, index) => <>
             <YComment plz={item.plz} content={item.content} key={index} reply={() => {

@@ -5,6 +5,8 @@ import Header from './icon.jpeg'
 import './style.css'
 import Store from './store'
 import { withRouter } from 'react-router-dom'
+import { lcStorage } from 'Util/storage'
+
 class index extends Component {
   formRef = React.createRef()
   constructor(props) {
@@ -14,7 +16,7 @@ class index extends Component {
     }
   }
   async componentWillMount() {
-    await Store.getJbxx({ username: this.props.username })
+    await Store.getJbxx({ username: lcStorage.getItem('username') })
     this.setState({
       grxx: Store.grxx
     })
@@ -23,7 +25,7 @@ class index extends Component {
     const { getFieldValue, validateFields } = this.formRef.current
     validateFields().then(async values => {
       let params = {
-        username: this.props.username,
+        username: lcStorage.getItem('username'),
         ...values
       }
       await Store.updateJbxx(params)
@@ -31,7 +33,7 @@ class index extends Component {
         this.setState({
           xgModal: false
         })
-        await Store.getJbxx({ username: this.props.username })
+        await Store.getJbxx({ username: lcStorage.getItem('username') })
         this.setState({
           grxx: Store.grxx
         })

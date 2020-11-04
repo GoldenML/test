@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import Xgmm from './jbxx/xgmm'
 import Grxx from './jbxx/grxx'
 import './style.css'
-import Utils from '../../../util/Utils'
+import Utils from 'Util/Utils'
 import MyShare from './myShare'
 const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout
@@ -89,13 +89,13 @@ class index extends Component {
             <Content style={{ margin: '24px 16px 0' }}>
               <div className='home'>
                 {
-                  this.state.xgmm && <Xgmm username={this.props.username} />
+                  this.state.xgmm && <Xgmm />
                 }
                 {
-                  this.state.grxx && <Grxx username={this.props.username} />
+                  this.state.grxx && <Grxx />
                 }
                 {
-                  this.state.myShare && <MyShare username={this.props.username} />
+                  this.state.myShare && <MyShare />
                 }
               </div>
             </Content>

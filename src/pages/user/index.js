@@ -10,6 +10,7 @@ import Home from './home'
 import Utils from '../../util/Utils'
 import Main from './main'
 import Forum from './forum'
+import { lcStorage } from 'Util/storage'
 const { SubMenu } = Menu
 const { Content, Footer } = Layout
 @inject('globalStore')
@@ -28,15 +29,18 @@ class index extends Component {
     let page = window.getUrlParams('page')
     if (page) {
       this.jump(page)
+      this.setState({
+        current: page
+      })
     }
-    await Store.getJbxx({ username: this.props.location.state.username })
+    await Store.getJbxx({ username: lcStorage.getItem('username') })
     this.setState({
       jbxx: Store.jbxx
     })
   }
   exit = () => {
     Utils.exit()
-    this.props.history.goBack()
+    this.props.history.push('/home')
   }
   jump = (value) => {
     // window.location.replace('http://localhost:3000/user?page=' + value)
@@ -68,7 +72,10 @@ class index extends Component {
   }
   handleClick = (e) => {
     console.log(e.key)
-    this.setState({ current: e.key })
+    // this.setState({ current: e.key })
+    if (e.key !== 'exit') {
+      window.location.href = `http://localhost:3100/user?page=` + e.key
+    }
   }
   render() {
     const { current } = this.state
@@ -78,7 +85,7 @@ class index extends Component {
           <Menu.Item key='main' icon={<WifiOutlined />} onClick={() => this.jump('main')}>
             首页
           </Menu.Item>
-          <Menu.Item key='app' icon={<CommentOutlined />} onClick={() => this.jump('forum')}>
+          <Menu.Item key='forum' icon={<CommentOutlined />} onClick={() => this.jump('forum')}>
             论坛
           </Menu.Item>
           <SubMenu key='SubMenu' icon={<SettingOutlined />} title='Navigation Three - Submenu'>
@@ -91,7 +98,7 @@ class index extends Component {
               <Menu.Item key='setting:4'>Option 4</Menu.Item>
             </Menu.ItemGroup>
           </SubMenu>
-          <Menu.Item key='alipay' style={{ float: 'right' }}>
+          <Menu.Item key='exit' style={{ float: 'right' }}>
             <a onClick={this.exit}>
               注销
             </a>
@@ -103,10 +110,10 @@ class index extends Component {
           </Menu.Item>
         </Menu>
         {
-          this.state.home && <Home username={this.props.location.state.username} />
+          this.state.home && <Home />
         }
         {
-          this.state.main && <Main username={this.props.location.state.username} />
+          this.state.main && <Main />
         }
         {
           this.state.forum && <Forum />

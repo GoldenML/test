@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Form, Input, Row, Col, Button, message } from 'antd'
 import Store from './store'
-import Utils from '../../../../../util/Utils'
+import Utils from 'Util/Utils'
+import { lcStorage } from 'Util/storage'
+
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 class index extends Component {
     formRef = React.createRef()
@@ -20,7 +22,7 @@ class index extends Component {
           return
         }
         let params = {
-          username: this.props.username,
+          username: lcStorage.getItem('username'),
           oldPassword: values.oldPassword,
           newPassword: values.newPassword
         }
