@@ -46,7 +46,7 @@ class index extends Component {
   }
   render() {
     return (
-      <div style={{ minHeight: '100vh', backgroundImage: `url(${img})` }}>
+      <div style={{ minHeight: '100vh', backgroundImage: `url(${img})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%' }}>
         <div style={{ margin: 'auto',
           position: 'absolute',
           top: '40%', left: 0, right: 0 }}
